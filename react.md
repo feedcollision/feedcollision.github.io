@@ -33,4 +33,4 @@ mixins:[setSomeThing]
 
 
 
-在JSX中绑定事件，形如<button onClick={(e) => this.handleClick(e)}>，在每次渲染时都会生成不同的回调，在高频次渲染或者将其作为props传入低阶的组件时时会有性能问题。
+在JSX中绑定事件，形如<button onClick={(e) => this.handleClick(e)}>，在每次渲染时都会生成不同的回调，在高频次渲染或者将其作为props传入低阶的组件时时会有性能问题。然而当点击事件需要传递参数时，这又是不可避免的，形如onClick={this.deleteRow.bind(this, id)，通过bind传递参数时，e将作为最后的参数，在传递的参数的后面
