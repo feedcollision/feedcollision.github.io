@@ -9,7 +9,8 @@ backbone本身的view层也属于比较薄的一层架构，那么使用其的mo
 
 
 回过头来看vdom，其本质是一个可以带children的js对象，在普通对象上增加_isReactElement这一属性既可作为常规的react组件挂载。
-在原始的react组件上，_isReactElement这一属性是挂在__proto__上，作为其从react继承的内容。
+在原始的react组件上，_isReactElement这一属性是挂在__proto__上，作为其从react继承的内容。All React elements require an additional $$typeof: Symbol.for('react.element') field declared on the object for security reasons.
+https://github.com/facebook/react/pull/4832  这个论述还需要看看。
 
 
 vdom的更新遵从以下原则，从而将更新算法简化为O(n)的算法
