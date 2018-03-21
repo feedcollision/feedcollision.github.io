@@ -9,3 +9,28 @@ const store = createStore(
  );
  
  增加以上内容后启用redux extension可以获得store的变化
+
+
+const logger = store => next => action => {
+  console.group(action.type)
+  console.info('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  console.groupEnd(action.type)
+  return result
+}
+
+middleware通过方法参数的形式接收next()方法，而不是通过store实例获取。
+function applyMiddleware(store, middlewares) {
+  middlewares = middlewares.slice()
+  middlewares.reverse()
+
+  let dispatch = store.dispatch
+  middlewares.forEach(middleware =>
+    dispatch = middleware(store)(dispatch)
+  )
+
+  return Object.assign({}, store, { dispatch })
+}
+
+直接传入原有的方法
